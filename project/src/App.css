@@ -1,0 +1,129 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bdimgforstudent{
+  background-image: url("./images/studentpagepic.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.inline{
+  display: inline;
+}
+
+.allbox{
+  text-align: center;
+  margin: 0 auto;
+  min-width: 400px;
+  max-width: 800px;
+} 
+
+
+.box{
+ float: left;
+/* width: 350  */
+} 
+
+
+.box1{
+  float: right;
+}
+
+.mainh{
+  text-align: center
+}
+
+.cursor{
+  cursor: pointer
+}
+
+.datastyle{
+  margin: 10px;
+}
+
+.box123{
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+};
+
+.style{
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+};
+
+
+.style1{
+  margin: 12;
+  display: block;
+
+};
+
+
+.style2{
+  margin: 12;
+  display: block;
+  size: 10px;
+};
+
+.bold{
+  font-weight: bold;
+}
+
+.left{
+float: left;
+}
+
+.right{
+float: right;
+}
+
+.sthmpg{
+  max-width: 70%;
+  min-width: 30%;
+}
+
+.center{
+  text-align: center;
+}
+
+.floatingLabelStyle{
+  text-align: left;
+}
+
+.red{
+  color: red;
+}
+
+.blue{
+  color: blue;
+}
