@@ -238,7 +238,7 @@ function mapDispatchToProp(dispatch) {
         }
 
     })
-}
+};
 
 
 

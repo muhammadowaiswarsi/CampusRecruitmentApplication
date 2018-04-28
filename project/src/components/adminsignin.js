@@ -28,8 +28,8 @@ class Adminsignin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            email: 'admin@gmail.com',
+            password: '123456',
             loader: false
         }
 

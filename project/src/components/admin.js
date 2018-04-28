@@ -55,7 +55,6 @@ class Datapage extends Component {
 
 
     render() {
-        console.log(this.props.companyusers1)
         return (
             <div>
 
@@ -79,7 +78,6 @@ class Datapage extends Component {
                     <TableBody displayRowCheckbox={false}>
                         {this.props.studentdataforcompany1 ? this.props.studentdataforcompany1.map((value, index) => {
                             let valueid = value.uid
-                            console.log(valueid)
                             return <TableRow key={index}>
                                 <TableRowColumn>{value.username}</TableRowColumn>
                                 <TableRowColumn>{value.email}</TableRowColumn>
@@ -107,7 +105,6 @@ class Datapage extends Component {
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
                         {this.props.companyusers1 ? this.props.companyusers1.map((value, index) => {
-                            console.log(value.uid)
                             let uid = value.uid
                             return <TableRow key={index}>
                                 <TableRowColumn>{value.username}</TableRowColumn>
@@ -136,7 +133,6 @@ class Datapage extends Component {
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
                         {this.props.jobpostdata1 ? this.props.jobpostdata1.map((value, index) => {
-                            console.log(value.uid)
                             let uid = value.uid
                             return <TableRow key={index}>
                                 {/* <TableRow> */}

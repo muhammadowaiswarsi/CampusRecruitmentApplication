@@ -48,45 +48,26 @@ class StudentProfile extends Component {
         this.props.studentprofiledata();
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({
+            editname: props.studentprofiledata1.username,
+            editnumber: props.studentprofiledata1.number,
+            editqualification: props.studentprofiledata1.qualification
+        })
+    }
+
 
     update = () => {
-        // const { editname, editnumber, editqualification } = this.state
-        // if (this.state.editname === '') {
-        //     this.setState({
-        //         editname: this.props.studentprofiledata1.username,
-        //     })
-        // } else {
-        //     editname: this.state.editname
-        // }
-        // if (this.state.editnumber === '') {
-        //     this.setState({
-        //         // editname: this.props.studentprofiledata1.username,
-        //         editnumber: this.props.studentprofiledata1.number,
-        //     })
-        // } else {
-        //     editnumber: this.state.editnumber
-        // }
-        // if (this.state.editqualification === '') {
-        //     this.setState({
-                // editname: this.props.studentprofiledata1.username,
-        //         editqualification: this.props.studentprofiledata1.qualification,
-        //     })
-        // } else {
-        //     editqualification: this.state.editqualification
-        // }
-
         let value = {
             editname: this.state.editname,
             editnumber: this.state.editnumber,
             editqualification: this.state.editqualification
         }
-        console.log(value)
         this.props.studentprofileupdate(value)
         this.setState({
             open: false
         })
     }
-    // }
 
     handleOpen = () => {
         this.setState({ open: true });
@@ -156,7 +137,7 @@ class StudentProfile extends Component {
                         <TextField ref="editname" floatingLabelText="Edit Username" hintText='edit Username' defaultValue={this.props.studentprofiledata1.username} name='editname' onChange={this.onChangeHandler.bind(this)} />
                         <br />
 
-                        <TextField ref="editnumber" floatingLabelText="Edit Number" hintText='edit Number' defaultValue={this.props.studentprofiledata1.number} name='editnumber' onChange={this.onChangeHandler.bind(this)} />
+                        <TextField ref="editnumber" type='number' floatingLabelText="Edit Number" hintText='edit Number' defaultValue={this.props.studentprofiledata1.number} name='editnumber' onChange={this.onChangeHandler.bind(this)} />
                         <br />
 
                         <TextField ref="editqualification" floatingLabelText="Edit Qualification" hintText='edit qualification' defaultValue={this.props.studentprofiledata1.qualification} name='editqualification' onChange={this.onChangeHandler.bind(this)} />

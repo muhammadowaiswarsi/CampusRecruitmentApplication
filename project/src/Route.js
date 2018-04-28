@@ -15,7 +15,6 @@ import Companyprofile from "./components/companyprofile"
 import MycompanyPostedJobs from "./components/mycompanypostedjobs"
 import Notfound from './components/notFound';
 import firebase from 'firebase'
-import CircularProgress from 'material-ui/CircularProgress';
 
 
 function PrivateRoute2({ component: Component, authed, ...rest }) {
@@ -125,9 +124,6 @@ class Routers extends Component {
                 if (convertype !== null) {
                     history.push(convertype)
                 }
-                // that.setState({
-                //     loader: false
-                // })
             }
 
             else {
@@ -141,14 +137,10 @@ class Routers extends Component {
 
 
     render() {
-        let { loader } = this.state
         return (
             <div>
                 <Router history={history}>
                     <Switch>
-                        {/*     {loader &&
-                            <CircularProgress size={80} thickness={5} />
-                        } */}
                         <Route exact path="/" component={Home} />
                         <Route path="/studentpage" component={studentpage} />
                         <Route path="/companypage" component={companypage} />

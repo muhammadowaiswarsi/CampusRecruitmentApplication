@@ -23,7 +23,6 @@ class Companydata extends Component {
 
     apply(uid, index) {
         let key = this.props.pushkeys1[index]
-        console.log(key)
         this.props.jobapply(uid, key)
 
     }
@@ -42,7 +41,6 @@ class Companydata extends Component {
     }
 
     render() {
-        console.log(this.props.jobpostdata)
         return (
             <div className='center'>
 

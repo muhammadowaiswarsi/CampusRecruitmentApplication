@@ -21,7 +21,6 @@ export function studentsignupAction(user) {
     return dispatch => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then((studentcreatedUser) => {
-                console.log('signed up successfully', studentcreatedUser.uid);
                 delete user.password;
                 delete user.confirmPassword;
                 user.uid = studentcreatedUser.uid;
@@ -32,7 +31,6 @@ export function studentsignupAction(user) {
                         history.push('/companydata');
                     })
             }).catch((error) => {
-                console.log(error.message)
                 dispatch({ type: ActionTypes.ERRORSTUDENTSU, payload: error.message });
             })
     }
@@ -42,14 +40,11 @@ export function studentsignupAction(user) {
 
 export function studentsigninAction(user) {
     return dispatch => {
-        console.log('user in signin', user);
         firebase.auth().signInWithEmailAndPassword(user.email1, user.password1)
             .then((studentsignedinUser) => {
                 let userid = studentsignedinUser.uid
-                console.log(userid)
                 firebase.database().ref(`users/students/${userid}`).once('value')
                     .then((userData) => {
-                        console.log(userData.val())
                         if (userData.val() === null) {
                             alert("user not found")
                             studentsignedinUser.delete()
@@ -61,7 +56,6 @@ export function studentsigninAction(user) {
                         }
                     })
             }).catch((error) => {
-                console.log(error.message)
                 dispatch({ type: ActionTypes.ERRORSTUDENTSN, payload: error.message });
             })
     }
@@ -73,7 +67,6 @@ export function companysignupAction(user) {
     return dispatch => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then((companycreatedUser) => {
-                console.log('signed up successfully', companycreatedUser.uid);
                 delete user.password;
                 delete user.confirmPassword;
                 user.uid = companycreatedUser.uid;
@@ -84,7 +77,6 @@ export function companysignupAction(user) {
                         history.push('/jobpost');
                     })
             }).catch((error) => {
-                console.log(error.message)
                 dispatch({ type: ActionTypes.ERRORCOMPANYSU, payload: error.message });
             })
     }
@@ -94,13 +86,11 @@ export function companysignupAction(user) {
 
 export function companysigninAction(user) {
     return dispatch => {
-        console.log('user in signin', user);
         firebase.auth().signInWithEmailAndPassword(user.email1, user.password1)
             .then((companysignedinUser) => {
                 let userid = companysignedinUser.uid
                 firebase.database().ref(`users/company/${userid}`).once('value')
                     .then((userData) => {
-                        console.log(userData.val())
                         if (userData.val() === null) {
                             alert("user not found");
                             companysignedinUser.delete()
@@ -112,7 +102,6 @@ export function companysigninAction(user) {
                         }
                     })
             }).catch((error) => {
-                console.log(error.message)
                 dispatch({ type: ActionTypes.ERRORCOMPANYSN, payload: error.message });
             })
     }
@@ -121,28 +110,22 @@ export function companysigninAction(user) {
 
 export function adminsigninAction(user) {
     return dispatch => {
-        console.log('user in signin', user);
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((adminsignedinUser) => {
                 let userid = adminsignedinUser.uid
                 firebase.database().ref(`users/admin/${userid}`).once('value')
                     .then((userData) => {
-                        console.log(userData.val())
                         if (userData.val() === null) {
                             alert('user not found');
-                            // firebase.auth().signOut().then(function () {
                             adminsignedinUser.delete()
                             history.push('/adminsignin')
-                            // })
                         } else {
                             setTimeout(() => {
                                 history.push('/admin');
                             }, 2000)
                         }
-
                     })
             }).catch((error) => {
-                console.log(error.message)
                 dispatch({ type: ActionTypes.ERRORADMINSN, payload: error.message });
             })
     }
@@ -164,13 +147,9 @@ export function companydatarecv() {
                     datapushkey.push(key1)
                 }
             }
-            console.log(dataarr)
-            console.log(datapushkey)
-            console.log(uids)
             dispatch({ type: ActionTypes.JOBPOSTDATA, payload: dataarr });
             dispatch({ type: ActionTypes.JOBPOSTDATAPUSHKEY, payload: datapushkey });
             dispatch({ type: ActionTypes.JOBUIDKEYS, payload: uids });
-
         })
     }
 }
@@ -185,7 +164,6 @@ export function studentdatarecv() {
             for (var key in dbdata) {
                 dataarr.push(dbdata[key])
             }
-            console.log(dataarr)
             dispatch({ type: ActionTypes.STUDENTDATAFORCOMPANY, payload: dataarr })
         })
     }
@@ -199,7 +177,6 @@ export function companycurrentuserdata() {
             if (user) {
                 firebase.database().ref(`users/company/${user.uid}`).on('value', snap => {
                     let dbdata = snap.val()
-                    console.log(dbdata)
                     dispatch({ type: ActionTypes.COMPANYPROFILEDATA, payload: dbdata })
                 })
             }
@@ -213,7 +190,6 @@ export function companycurrentuserdata() {
 ////Company Jobpost//////
 
 export function jobpostdata(data) {
-    console.log(data)
     return dispatch => {
         firebase.auth().onAuthStateChanged((user) => {
             let UID = user.uid
@@ -233,12 +209,10 @@ export function mycompanyjobpostdata() {
             if (user) {
                 firebase.database().ref(`jobPost/${user.uid}`).on('value', snap => {
                     let dbdata = snap.val()
-                    console.log(dbdata)
                     let dataarr = [];
                     for (var key in dbdata) {
                         dataarr.push(dbdata[key])
                     }
-                    console.log(dataarr)
                     dispatch({ type: ActionTypes.MYCOMPANYJOBPOSTDATA, payload: dataarr })
                 })
             }
@@ -255,7 +229,6 @@ export function studentprofiledata() {
             if (user) {
                 firebase.database().ref(`users/students/${user.uid}`).on("value", snap => {
                     let dbdata = snap.val();
-                    // console.log(dbdata)
                     dispatch({ type: ActionTypes.STUDENTPROFILEDATA, payload: dbdata })
                 })
             }
@@ -273,7 +246,6 @@ export function companyusers() {
             for (var key in dbdata) {
                 dataarr.push(dbdata[key])
             }
-            console.log(dataarr)
             dispatch({ type: ActionTypes.COMPANYUSERS, payload: dataarr })
         })
     }
@@ -282,8 +254,6 @@ export function companyusers() {
 
 export function admindelFuncstudent(valueid, index) {
     return dispatch => {
-        console.log(valueid)
-        console.log(index)
         firebase.database().ref(`users/students/${valueid}`).remove()
     }
 }
@@ -291,16 +261,14 @@ export function admindelFuncstudent(valueid, index) {
 
 export function deletecompusers(uid, index) {
     return dispatch => {
-        console.log(uid)
         firebase.database().ref(`users/company/${uid}`).remove()
+        firebase.database().ref(`jobPost/${uid}/`).remove()
     }
 }
 
 
 export function deletejobfunc(uid, key) {
     return dispatch => {
-        console.log(uid)
-        console.log(key)
         firebase.database().ref(`jobPost/${uid}/${key}`).remove()
     }
 }
@@ -308,7 +276,6 @@ export function deletejobfunc(uid, key) {
 
 export function studentprofileupdate(val, index) {
     return dispatch => {
-        console.log(val)
         firebase.auth().onAuthStateChanged((user) => {
             firebase.database().ref('/').child(`users/students/${user.uid}`).update({ username: val.editname, number: val.editnumber, qualification: val.editqualification })
         })
@@ -320,7 +287,7 @@ export function jobapply(currentuid, key) {
     return dispatch => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                firebase.database().ref(`/users/students/${user.uid}/`).on('value', snap => {
+                firebase.database().ref(`/users/students/${user.uid}/`).once('value').then((snap) => {
                     let data = snap.val()
                     let apply = false;
                     let obj = {
@@ -337,7 +304,6 @@ export function jobapply(currentuid, key) {
                             if (applicants) {
                                 for (let key in applicants) {
                                     let appliedstudents = (applicants[key])
-                                    console.log(appliedstudents)
                                     if (appliedstudents.uid === obj.uid) {
                                         apply = true;
                                         break;
@@ -345,12 +311,8 @@ export function jobapply(currentuid, key) {
                                 }
                             }
                             if (apply) {
-                                console.log(apply);
                                 alert('You are already applied!');
                             } else {
-                                console.log(obj);
-                                console.log(currentuid);
-                                console.log(key);
                                 firebase.database().ref(`/jobPost/${currentuid}/${key}/applicants`).push(obj)
                                     .then(() => {
                                         alert('Applied successfully');
@@ -366,15 +328,12 @@ export function jobapply(currentuid, key) {
 
 export function appliedstudents(uid, key) {
     return dispatch => {
-        console.log(key)
         firebase.database().ref(`/jobPost/${uid}/${key}/applicants/`).on('value', snap => {
-            console.log(snap.val())
             let dbdata = snap.val()
             let dataarr = [];
             for (var key in dbdata) {
                 dataarr.push(dbdata[key])
             }
-            console.log(dataarr)
             dispatch({ type: ActionTypes.APPLIEDSTUDENTS, payload: dataarr })
         })
     }
@@ -385,11 +344,12 @@ export function appliedstudents(uid, key) {
 export function signout() {
     return dispatch => {
         firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-            history.push('/')
+            window.location.reload();
             localStorage.clear()
+            setTimeout(function () {
+                history.push('/')
+            }, 3000);
         }).catch(function (error) {
-            // An error happened.
             alert(error.msg)
         });
     }

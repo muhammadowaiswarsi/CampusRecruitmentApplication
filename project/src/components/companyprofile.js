@@ -34,7 +34,6 @@ class companyprofile extends Component {
 
 
     render() {
-        console.log(this.props.companyprofiledata1)
 
         return (
             <div className='center'>

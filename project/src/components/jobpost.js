@@ -39,21 +39,21 @@ class Jobpost extends Component {
 
     _onChangejob(event) {
         this.setState({
-            companyname: event.target.value.trim()
+            companyname: event.target.value
         })
     }
 
 
     _onChangejobdesc(event) {
         this.setState({
-            jobdesc: event.target.value.trim()
+            jobdesc: event.target.value
         })
     }
 
 
     _onChangejobdesignation(event) {
         this.setState({
-            jobdesignation: event.target.value.trim()
+            jobdesignation: event.target.value
         })
     }
 
@@ -65,7 +65,8 @@ class Jobpost extends Component {
 
 
 
-    jobpost = () => {
+    jobpost = (e) => {
+        e.preventDefault()
         let user = {
             companyname: this.state.companyname,
             jobdesc: this.state.jobdesc,
@@ -80,7 +81,6 @@ class Jobpost extends Component {
             salary: '',
         })
     }
-
 
 
     render() {
@@ -143,17 +143,13 @@ class Jobpost extends Component {
                                 type='text' name='Designation' value={this.state.jobdesignation} onChange={this._onChangejobdesignation} required />
                             <br />
 
-                            <TextField hintText="Salary..." floatingLabelText="Salary" type='text'
+                            <TextField hintText="Salary..." floatingLabelText="Salary" type='number'
                                 name='salary' value={this.state.salary} onChange={this.salary} required />
                             <br />
 
                             <RaisedButton type="submit" label="Job Post" primary={true} className="style1" />
                             <br /><br />
 
-                            <Link to="/companyuserhomepage">
-                                <RaisedButton label="For Seeing Data Click Here...." secondary={true} className="style1">
-                                </RaisedButton>
-                            </Link>
                         </form>
 
 

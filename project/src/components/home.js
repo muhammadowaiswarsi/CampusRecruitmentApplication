@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Adminpic from '../images/admin.png'
-import Student from '../images/graduationcap.jpg'
+import Student from '../images/graduation.png'
 import Company from '../images/companydata.png'
 import AppBar from 'material-ui/AppBar';
 
@@ -17,7 +17,7 @@ class Home extends Component {
                 <div className="inline" style={{ width: "20%" }}>
                     <Link to="/studentpage">
                         <h1 style={{ color: "red" }}>I am a Student </h1>
-                        <img src={Student} alt="I am a Student" />
+                        <img src={Student} width='15%' alt="I am a Student" />
                     </Link>
                 </div >
 

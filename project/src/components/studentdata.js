@@ -34,7 +34,6 @@ class Studentdata extends Component {
 
 
     render() {
-        console.log(this.props.studentdataforcompany1)
         return (
             <div className='center'>
 
@@ -75,9 +74,8 @@ class Studentdata extends Component {
                 </Drawer>
 
 
-                <h1 className="mainh">My company posted jobs</h1>
+                <h1 className="mainh">Students Data Here</h1>
                 {this.props.studentdataforcompany1 ? this.props.studentdataforcompany1.map((value, index) => {
-                    console.log(value.uid)
                     return <Paper className="box123 datastyle" key={index} zDepth={5}>
                         <li className="left red">Username: <span className="blue">{value.username}</span></li >
                         <br />

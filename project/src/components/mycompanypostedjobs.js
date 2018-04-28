@@ -38,14 +38,10 @@ class MycompanyPostedJobs extends Component {
     }
 
     appliedstudents(uid, index) {
-        console.log(uid)
-        console.log(index)
-        console.log(this.props.pushkeys1)
         this.setState({
             open: true
         })
         let key = this.props.pushkeys1[index]
-        console.log(key)
         this.props.appliedstudents(uid, key)
     }
 
@@ -59,8 +55,6 @@ class MycompanyPostedJobs extends Component {
     }
 
     render() {
-        console.log(this.props.mycompanyjobpostdata1)
-        console.log(this.props.appliedstudents1)
         return (
             <div className='center'>
 
@@ -103,7 +97,6 @@ class MycompanyPostedJobs extends Component {
 
                 <h1 className="mainh">My company posted jobs</h1>
                 {this.props.mycompanyjobpostdata1 ? this.props.mycompanyjobpostdata1.map((value, index) => {
-                    console.log(value.uid)
                     return <Paper className="datastyle" style={style} key={index} zDepth={5}>
                         <li className="left red">Company Name: <span className="blue">{value.companyname}</span></li >
                         <br />
@@ -155,10 +148,8 @@ class MycompanyPostedJobs extends Component {
 const styles = {
     dialog: {
         height: "auto",
-        width: "400px",
         textAlign: "center",
         display: "inline-block",
-        marginLeft: '34.25%',
         padding: "5px"
     }
 }
