@@ -4,19 +4,6 @@ import firebase from 'firebase';
 
 
 
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyB9AHbfx8Lauz5tPbkxHPTEYBdSypbgTzk",
-    authDomain: "hackathon-a.firebaseapp.com",
-    databaseURL: "https://hackathon-a.firebaseio.com",
-    projectId: "hackathon-a",
-    storageBucket: "",
-    messagingSenderId: "834077280609"
-};
-firebase.initializeApp(config);
-
-
-
 export function studentsignupAction(user) {
     return dispatch => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
